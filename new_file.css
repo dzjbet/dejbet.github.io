@@ -1,0 +1,35 @@
+.info{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	width: 600px;
+	height: 500px;
+	padding: 30px;
+	background-image: url(back.jpg);
+}
+
+
+.size,.much{
+	width: 30px;
+}
+.spin{
+	display: flex;
+	width: 400px;
+	height: 60px;
+	padding: 10px;
+}
+
+.money{
+	width: auto;
+}
+
+.xzhe,.jshao,.jge,.sliang{
+	position: relative;
+	margin-left: 10%;
+}
+
+.jsuan{
+	position: relative;
+	margin-left: 20%;
+}

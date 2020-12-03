@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="new_file.css"/>
+	<script src="new_file.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//商品减少函数
+		low = function (low_id) {
+			var a=document.getElementById(low_id);
+			var a1=Number(a.value);
+			if(a1>1)
+			 a.value=a1-1;
+			else window.alert("数量不能再减少了!");
+			genxin();
+		}
+		//商品增加函数
+		inc = function (inc_id) {
+			var a=document.getElementById(inc_id);
+			var a1=Number(a.value);
+			a.value=a1+1;
+			genxin();
+		}
+		//全选按钮
+		check_all=function (qxuan_checked) {
+			var a=document.getElementsByName("spin");
+			for (var i = 0; i < a.length; i++) {
+				a[i].checked=qxuan_checked;
+			}
+			genxin();
+		}
+		//将函数放到全选和商品增减函数里，更新商品总价
+		genxin=function () {
+			var a=document.getElementsByName("spin");      //获取所有商品id
+			var a1=document.getElementsByName("much1");   //获取单价列表
+			var a2=document.getElementsByName("size_name"); //获取数量列表
+			var z_id=document.getElementById("zmoney");   //总价id
+			var money_sum=0;
+			for (var i = 0; i < a.length; i++) {
+				if (a[i].checked) {
+					money_sum+=a1[i].value*a2[i].value;
+				}
+			}
+			z_id.value=money_sum;
+		}
+		
+		
+		//计算总价和全选设置
+		jisuan=function () {
+			var a=document.getElementsByName("spin");
+			var a1=document.getElementsByName("much1");   //获取单价列表
+			var a2=document.getElementsByName("size_name"); //获取数量列表
+			var q_id=document.getElementById("qxuan");    //
+			var z_id=document.getElementById("zmoney");   //总价id
+			for (var i = 0; i < a.length; i++) {
+				a[i].onclick=function () {
+					var count=0;
+					for (let i = 0; i < a.length; i++) {
+						if(a[i].checked)
+								count++;
+					}
+					q_id.checked=(count==a.length);
+					
+					//计算总价
+					var money_sum=0;
+					for (var i = 0; i < a.length; i++) {
+						if (a[i].checked) {
+							money_sum+=a1[i].value*a2[i].value;
+						}
+					}
+					z_id.value=money_sum;
+				}
+			}
+		}
+	</script>
+	<body onload="jisuan()">
+		<div class="info">
+			<div class="spin">
+				<input type="checkbox" class="xzhe" name="spin" value="1" />
+				<div class="jshao">
+					衣服
+				</div>
+				<div class="jge">
+					<input type="text" class="much" name="much1" id="" value="187" readonly/>元
+				</div>
+				<div class="sliang">数量
+					<input type="button" class="low" id="lower" value="-" onclick="low('size_yf')"/>
+					<input type="text" class="size" id="size_yf" name="size_name" value="1" readonly/>
+					<input type="button" class="hig" id="higer" value="+" onclick="inc('size_yf')"/>
+				</div>
+			</div>
+			
+			<div class="spin">
+				<input type="checkbox" class="xzhe" name="spin" value="2" />
+				<div class="jshao">
+					裤子
+				</div>
+				<div class="jge">
+					<input type="text" class="much" name="much1" id="" value="200" readonly/>元
+				</div>
+				<div class="sliang">数量
+					<input type="button" class="low" id="lower" value="-" onclick="low('size_kz')"/>
+					<input type="text" class="size" id="size_kz" name="size_name" value="1" readonly/>
+					<input type="button" class="hig" id="higer" value="+" onclick="inc('size_kz')"/>
+				</div>
+			</div>
+			
+			<div class="spin">
+				<input type="checkbox" class="xzhe" name="spin" value="3" />
+				<div class="jshao">
+					袜子
+				</div>
+				<div class="jge">
+					<input type="text" class="much" name="much1" id="" value="30" readonly/>元
+				</div>
+				<div class="sliang">数量
+					<input type="button" class="low" id="lower" value="-" onclick="low('size_wz')"/>
+					<input type="text" class="size" id="size_wz" name="size_name" value="1" readonly/>
+					<input type="button" class="hig" id="higer" value="+" onclick="inc('size_wz')"/>
+				</div>
+			</div>
+			
+			<div class="spin">
+				<input type="checkbox" class="xzhe" name="spin" value="4" />
+				<div class="jshao">
+					外套
+				</div>
+				<div class="jge">
+					<input type="text" class="much" name="much1" id="" value="299" readonly/>元
+				</div>
+				<div class="sliang">数量
+					<input type="button" class="low" id="lower" value="-" onclick="low('size_wt')"/>
+					<input type="text" class="size" id="size_wt" name="size_name" value="1" readonly/>
+					<input type="button" class="hig" id="higer" value="+" onclick="inc('size_wt')"/>
+				</div>
+			</div>
+			
+			<div class="zjie">
+				<input type="checkbox" class="xzhe" name="" id="qxuan" onclick="check_all(this.checked)"/>全选
+				总价<input type="text" class="money" id="zmoney" readonly/>元
+				<!--<input type="button" class="jsuan" name="" id="" value="结算" />  -->
+				<a href="jiesuan.html" style="margin-left: 10%;font-size: 30px;color: crimson;">结算</a>
+			</div>
+		</div>
+	</body>
+</html>
